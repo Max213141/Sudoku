@@ -12,19 +12,30 @@ class _SudokuState extends State<Sudoku> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 510,
-      height: 510,
-      color: Colors.cyanAccent[100],
-      alignment: Alignment.topLeft,
-      child: Flex(
-        clipBehavior: ,
-        direction: Axis.horizontal,
-        children: [
-          SegmentOfSudoku(),
-          SegmentOfSudoku(),
-          SegmentOfSudoku(),
-        ]
-      )
-    );
+        color: Colors.cyanAccent[100],
+        alignment: Alignment.topLeft,
+        child: Column(
+          children: [
+            Flex(direction: Axis.horizontal, children: [
+              SegmentOfSudoku(),
+              SegmentOfSudoku(),
+              SegmentOfSudoku(),
+            ]),
+            SizedBox(height: 30),
+            Flex(
+              direction: Axis.horizontal,
+              children: listOfNumbers(),
+            )
+          ],
+        ));
   }
+}
+
+listOfNumbers() {
+  List<Widget> array = [];
+  for (var i = 0; i <= 9; i++) {
+    array.add(ElevatedButton(child: Text('$i')));
+  }
+  array.add(ElevatedButton(child: Text('Ready')));
+  return array;
 }
