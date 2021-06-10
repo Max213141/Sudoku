@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sudoku/widget/segment_widget.dart';
 
+
 class Sudoku extends StatefulWidget {
   const Sudoku({Key key}) : super(key: key);
 
@@ -31,11 +32,11 @@ class _SudokuState extends State<Sudoku> {
   }
 }
 
-listOfNumbers() {
-  List<Widget> array = [];
-  for (var i = 0; i <= 9; i++) {
-    array.add(ElevatedButton(child: Text('$i')));
-  }
-  array.add(ElevatedButton(child: Text('Ready')));
-  return array;
-}
+// listOfNumbers() {
+//   List<Widget> array = [];
+//   for (var i = 0; i <= 9; i++) {
+//     array.add(ValueSetButton(i));
+//   }
+//   array.add(ElevatedButton(child: Text('Ready')));
+//   return array;
+// }

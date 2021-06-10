@@ -1,6 +1,6 @@
 import 'package:sudoku/classes/cell_class.dart';
 import 'classes/sudocu_class.dart';
-
+import 'p.dart';
 
 SudokuLayout mainLayout = createMainLayout();
 
@@ -8,18 +8,7 @@ createMainLayout() {
   var res = createList(cells);
   var sudoku = SudokuLayout(body: res);
   return sudoku;
-  // print(res[9].x);
-  // print(res[9].y);
-  // print(res[9].id);
-  // print(sudoku.getSegment(1)[0].s);
-  // print(sudoku.getSegment(2)[1].s);
-  // print(sudoku.getSegment(3)[2].s);
-  // print(sudoku.getSegment(4)[3].s);
-  // print(sudoku.getSegment(5)[4].s);
-  // print(sudoku.getSegment(6)[5].s);
-  // print(sudoku.getSegment(7)[6].s);
-  // print(sudoku.getSegment(8)[7].s);
-  // print(sudoku.getSegment(9)[8].s);
+
 }
 
 List<Cell> cells = [];
