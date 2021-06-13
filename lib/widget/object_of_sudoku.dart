@@ -1,5 +1,5 @@
 import 'package:sudoku/classes/cell_class.dart';
-import 'classes/sudocu_class.dart';
+import '../classes/sudocu_class.dart';
 import 'p.dart';
 
 SudokuLayout mainLayout = createMainLayout();
@@ -8,7 +8,6 @@ createMainLayout() {
   var res = createList(cells);
   var sudoku = SudokuLayout(body: res);
   return sudoku;
-
 }
 
 List<Cell> cells = [];

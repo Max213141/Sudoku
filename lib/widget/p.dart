@@ -7,22 +7,20 @@ typedef CellRetrieveFunction = int Function(int x, int y); //Объявлени�
 
 class GameField {
   static const int size = side * side; // нигде не используется
-  int getCell(int x, int y) => cells[x + y * side]; // хз как можно обратится к тому что непонятно где обозначено
+  int getCell(int x, int y) => cells[x +
+      y * side]; // хз как можно обратится к тому что непонятно где обозначено
 
-  const GameField(this.cells);//хз что делает
-  final List<int> cells;// Объявление массива
-  _Squares get squares => _Squares(getCell);// получение сегментов(squers)
-  _Columns get cols => _Columns(getCell);// получение сегментов(columns)
-  _Rows get rows => _Rows(getCell);// получение сегментов(rows)
+  const GameField(this.cells); //хз что делает
+  final List<int> cells; // Объявление массива
+  _Squares get squares => _Squares(getCell); // получение сегментов(squers)
+  _Columns get cols => _Columns(getCell); // получение сегментов(columns)
+  _Rows get rows => _Rows(getCell); // получение сегментов(rows)
 
-
-  bool get isValid =>
-      squares.isValid &&
-          cols.isValid &&
-          rows.isValid;
+  bool get isValid => squares.isValid && cols.isValid && rows.isValid;
 
   // create a new GameField object with changed value
-  GameField setCell(int x, int y, int newValue) {             //Создание нового объекта с новыми значениями в гэймфилде
+  GameField setCell(int x, int y, int newValue) {
+    //Создание нового объекта с новыми значениями в гэймфилде
     List<int> newCells = cells.toList(); // create a copy of a list
     newCells[x + y * side] = newValue; // находим нужную ячейку
     return GameField(newCells); // меняем значение на новое
@@ -45,8 +43,7 @@ abstract class FieldPart {
   CellGroup operator [](int index);
 }
 
-
-class _Squares extends FieldPart{
+class _Squares extends FieldPart {
   @override
   final CellRetrieveFunction getCell;
 
@@ -58,8 +55,8 @@ class _Squares extends FieldPart{
       throw RangeError.index(index, _Squares);
     }
 
-    final int dx = (index % 3) * squareSide;// хз что это
-    final int dy = (index ~/ 3) * squareSide;// хз что это
+    final int dx = (index % 3) * squareSide; // хз что это
+    final int dy = (index ~/ 3) * squareSide; // хз что это
 
     return CellGroup(
       [
@@ -78,7 +75,7 @@ class _Squares extends FieldPart{
 //   return result;
 // }
 
-class _Columns extends FieldPart{
+class _Columns extends FieldPart {
   @override
   final CellRetrieveFunction getCell;
 
@@ -100,7 +97,7 @@ class _Columns extends FieldPart{
   }
 }
 
-class _Rows extends FieldPart{
+class _Rows extends FieldPart {
   @override
   final CellRetrieveFunction getCell;
 
@@ -127,18 +124,18 @@ class CellGroup {
   final List<int> cells;
 
   const CellGroup(this.cells);
-  bool get isValid => <int>[ //Проверка на валидность
-    for (int i = 1; i <= 9; i++) i,
-  ].every(
-        (element) => cells.contains(element),//Я понимаю это как проверка всего массива на наличие
-    // значения и если оно присутствует то будет возвращено тру
-  );
+  bool get isValid => <int>[
+        //Проверка на валидность
+        for (int i = 1; i <= 9; i++) i,
+      ].every(
+        (element) => cells.contains(
+            element), //Я понимаю это как проверка всего массива на наличие
+        // значения и если оно присутствует то будет возвращено тру
+      );
 }
 
-
-
-
-class StateWidget extends InheritedWidget { // Создание контролирующего виджета
+class StateWidget extends InheritedWidget {
+  // Создание контролирующего виджета
   StateWidget({Key key, this.child}) : super(key: key, child: child);
 
   final Widget child;
@@ -148,7 +145,8 @@ class StateWidget extends InheritedWidget { // Создание контроли
   int get activeCellX => activeCell % side;
   int get activeCellY => activeCell ~/ side;
 
-  void setCellValue(int newValue) { // Ф-ция для смены числа в поле вызывается при нажатии кнопки
+  void setCellValue(int newValue) {
+    // Ф-ция для смены числа в поле вызывается при нажатии кнопки
     if (activeCell != null)
       field = field.setCell(
         activeCellX,
@@ -157,7 +155,8 @@ class StateWidget extends InheritedWidget { // Создание контроли
       );
   }
 
-  void setActiveCell(int index) => activeCell = index; // установка активной клетки
+  void setActiveCell(int index) =>
+      activeCell = index; // установка активной клетки
   void resetActiveCell() => setActiveCell(null); //сброс активной клетки
 
   static StateWidget of(BuildContext context) {
@@ -170,7 +169,8 @@ class StateWidget extends InheritedWidget { // Создание контроли
   }
 }
 
-class ValueSetButton extends StatelessWidget { //Создание кастомной кнопки
+class ValueSetButton extends StatelessWidget {
+  //Создание кастомной кнопки
   final int index;
   final int value;
 
